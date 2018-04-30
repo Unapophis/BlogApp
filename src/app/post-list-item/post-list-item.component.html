@@ -1,0 +1,32 @@
+<li [ngClass]="getStatePostClass()">
+  <div class="row">
+      <div class="col-xs-6">
+          <h4>
+            <b>
+              {{title}}
+            </b>
+          </h4>
+      </div>
+      <div class="col-xs-6" style="text-align: right">
+          <h5>
+            <i>
+              {{created_at | date: 'short'}}
+            </i>
+          </h5>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      {{content}}
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+      <div class="col-xs-12">
+        <button class="btn btn-success"
+                (click)="loveIt()">Love it !</button>
+        <button class="btn btn-danger"
+                (click)="dontLoveIt()">Don't love it !</button>
+      </div>
+    </div>
+</li>
