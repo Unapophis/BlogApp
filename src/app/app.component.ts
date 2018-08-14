@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Post } from './Post';
+import { Post } from './models/post';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +8,16 @@ import { Post } from './Post';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  posts: Array<Post> = [];
-
-  constructor() { }
-
-  ngOnInit() {
-    this.posts[0] = new Post("Mon premier post", "Ceci est le contenu de mon premier post", 0, null);
-    this.posts[1] = new Post("Mon deuxième post", "Ceci est le contenu de mon deuxième post", 0, null);
-    this.posts[2] = new Post("Encore un post", "Ceci est le contenu d'un autre post", 0, null);
+  
+  constructor() {
+    const config = {
+      apiKey: "AIzaSyBX7l7Jek4orE3QPuTycv8HEpB86mJ5Ewc",
+      authDomain: "blogapp-cbbf7.firebaseapp.com",
+      databaseURL: "https://blogapp-cbbf7.firebaseio.com",
+      projectId: "blogapp-cbbf7",
+      storageBucket: "blogapp-cbbf7.appspot.com",
+      messagingSenderId: "921992398073"
+    };
+    firebase.initializeApp(config);
   }
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PostsService } from '../services/posts.service';
+import { Post } from '../models/Post';
+import { ActivatedRoute, Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-post-list-item',
@@ -7,12 +10,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PostListItemComponent implements OnInit {
 
+  @Input() id: number;
   @Input() title: string;
   @Input() content: string;
   @Input() loveIts: number;
   @Input() created_at: string;
 
-  constructor() { }
+  constructor(private postsService: PostsService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,10 +32,14 @@ export class PostListItemComponent implements OnInit {
   }
 
   loveIt() {
-    this.loveIts ++;
+    this.postsService.loveIt(this.id);
   }
 
   dontLoveIt() {
-    this.loveIts --;
-  } 
+    this.postsService.dontLoveIt(this.id);
+  }
+
+  deleteIt(post: Post) {
+    this.postsService.removePost(post);
+  }
 }
