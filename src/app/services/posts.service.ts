@@ -47,15 +47,8 @@ export class PostsService {
         this.emitPosts();
     }
 
-    removePost(post: Post) {
-        const postIndexToRemove = this.posts.findIndex(
-        (postEl) => {
-            if (postEl === post) {
-            return true;
-            }
-        }
-        );
-        this.posts.splice(postIndexToRemove, 1);
+    removePost(id: number) {
+        this.posts.splice(id, 1);
         this.savePosts();
         this.emitPosts();
     }
@@ -63,7 +56,7 @@ export class PostsService {
     loveIt(id: number) {
         this.getSinglePosts(+id).then(
             (post: Post) => {
-              this.editPost(post, id, true, false);              
+              this.editPost(id, true, false);              
             }
         )
     }
@@ -71,12 +64,12 @@ export class PostsService {
     dontLoveIt(id: number) {
         this.getSinglePosts(+id).then(
             (post: Post) => {
-              this.editPost(post, id, false, true);              
+              this.editPost(id, false, true);              
             }
         )
     }
 
-    editPost(post: Post, id: number, love: boolean, dontLove: boolean) {
+    editPost(id: number, love: boolean, dontLove: boolean) {
         if (love) {
             this.posts[id].loveIts ++;
         }

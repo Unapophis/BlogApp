@@ -39,7 +39,7 @@ export class PostListItemComponent implements OnInit {
     this.postsService.dontLoveIt(this.id);
   }
 
-  deleteIt(post: Post) {
-    this.postsService.removePost(post);
+  deleteIt() {
+    this.postsService.removePost(this.id);
   }
 }
